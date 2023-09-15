@@ -1,3 +1,5 @@
+
+
 """
 Django settings for project project.
 
@@ -11,7 +13,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import logging.config
 import os
+import sys
+
+
+print("DEVELOPMENT")
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +34,8 @@ SECRET_KEY = 'django-insecure-lma!s+krn!0!ha-^#$14_ihsm53b=bz(hg4s&wzkcz6@h8m_&g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', "0.0.0.0"]
 
 
 # Application definition
@@ -131,15 +140,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
         },
         "file": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": "../logging/debug.log",
-        },
+            "class": "logging.handlers.RotatingFileHandler",
+           "level": "DEBUG",
+            "filename": "../../logging/debug.log",
+            "formatter" : "verbose",
+            "maxBytes" : 2000,
+            "backupCount" : 4
+        }
     },
     "root": {
         "handlers": ["console"],
