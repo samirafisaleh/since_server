@@ -11,12 +11,9 @@ import os
 ###################################################
 # Debug Configuration
 ###################################################
-reload = os.getenv("GUNICORN_RELOAD", True)
-reload = True if reload == "true" else False
-check_config = os.getenv("GUNICORN_CHECKCONFIG", True)
-check_config = True if check_config == "true" else False
-print_config = os.getenv("GUNICORN_PRINTCONFIG", True)
-print_config = True if print_config == "true" else False
+reload = True
+check_config = False
+print_config = False
 
 
 
@@ -25,18 +22,17 @@ print_config = True if print_config == "true" else False
 ###################################################
 # Logging Configuration
 ###################################################
-accesslog = os.getenv("GUNICORN_ACCESS_LOGFILE", "../../logging/gunicorn/access.log")
-errorlog  = os.getenv("GUNICORN_ERROR_LOGFILE", "../../logging/gunicorn/error.log")
-loglevel = os.getenv("GUNICORN_LOGLEVEL", 'info')
-capture_output = os.getenv("GUNICORN_CAPTURE_OUTPUT", False)
-capture_output = True if capture_output == "true" else False
+accesslog = "../../logging/gunicorn/access.log"
+errorlog  = "../../logging/gunicorn/error.log"
+loglevel = 'info'
+capture_output = True
 
 
 
 ###################################################
 # Process Naming Configuration
 ###################################################
-proc_name = os.getenv("GUNICORN_PROC_NAME", 'University Of All')
+proc_name = 'Since'
 
 
 ###################################################
@@ -109,15 +105,15 @@ def on_exit(server):
 ###################################################
 # Server Socket Configuration
 ###################################################
-bind = os.getenv("GUNICORN_BIND", '0.0.0.0:8000')
+bind = '0.0.0.0:8000'
 
 ###################################################
 # Worker Processes Configuration
 ###################################################
-workers=os.getenv("GUNICORN_WORKERS", 2)
-worker_class=os.getenv("GUNICORN_WORKER_CLASS", "sync")
-threads = os.getenv("GUNICORN_THREADS", 2)
-max_requests = os.getenv("GUNICORN_MAX_REQUEST", 100)
-timeout = os.getenv("GUNICORN_TIMEOUT", 30)
-graceful_timeout = os.getenv("GUNICORN_GRACEFUL_TIMEOUT", 30)
-keepalive = os.getenv("GUNICORN_KEEPALIVE", 30)
+workers=1
+worker_class="sync"
+threads = 2
+max_requests = 100
+timeout = 30
+graceful_timeout = 30
+keepalive = 30

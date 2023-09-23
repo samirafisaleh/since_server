@@ -1,8 +1,6 @@
-
-
+.DS_Store
 env/
 logging/
-
-*.pyc
-
 migrations/
+project/db.sqlite3
+*.pyc

@@ -1,5 +1,5 @@
 
-if [[ $# -eq 0 ]];
+if [ $# -eq 0 ];
 then
     echo "FATAL: No environment arguments supplied."
     echo "INFO: Exiting ...."
@@ -15,4 +15,6 @@ fi
 
 echo "Environment: $1"
 
-docker build --build-arg env=$1 --tag since_public_api:$1 .
+cd source/project/
+python manage.py makemigrations --settings=settings.settings_$1
+python manage.py migrate --settings=settings.settings_$1

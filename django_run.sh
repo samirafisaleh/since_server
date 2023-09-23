@@ -15,4 +15,8 @@ fi
 
 echo "Environment: $1"
 
-docker build --build-arg env=$1 --tag since_public_api:$1 .
+pushd source/project/
+set -a
+export DJANGO_SETTINGS_MODULE=settings.settings_$1
+set +a
+python manage.py runserver $HOST --settings=settings.settings_$1

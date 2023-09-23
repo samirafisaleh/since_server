@@ -15,4 +15,8 @@ fi
 
 echo "Environment: $1"
 
-docker build --build-arg env=$1 --tag since_public_api:$1 .
+set -a
+export DJANGO_SETTINGS_MODULE=settings.settings_$1
+set +a
+pushd source/project/
+gunicorn -c settings/gunicorn_config_$1.py project.wsgi
