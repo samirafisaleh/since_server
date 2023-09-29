@@ -1,5 +1,5 @@
 
-if [[ $# -eq 0 ]];
+if [ $# -eq 0 ];
 then
     echo "FATAL: No environment arguments supplied."
     echo "INFO: Exiting ...."
@@ -13,10 +13,14 @@ then
     exit 1
 fi
 
-echo "Environment: $1"
+if [ "$1" == "stage" ]
+then
+    if [ ! -f /.dockerenv ]
+    then
+        echo "FATAL: Environment 'stage' must be containerized"
+        echo "INFO: Exiting ...."
+        exit 1
+    fi
+fi
 
-pushd source/project/
-set -a
-export DJANGO_SETTINGS_MODULE=settings.settings_$1
-set +a
-python manage.py runserver $HOST --settings=settings.settings_$1
+echo "Environment: $1"

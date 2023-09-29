@@ -8,8 +8,6 @@ ARG env
 
 WORKDIR /
 
-COPY django_run.sh gunicorn_run.sh django_run_migration.sh ./
-
 # Build the logging structure
 RUN mkdir -p /logging/
 RUN mkdir -p /logging/gunicorn/
@@ -17,8 +15,9 @@ RUN mkdir -p /logging/gunicorn/
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
+COPY eval_env.sh wf_list_urls_django.sh wf_run_django.sh wf_run_migration_django.sh wf_run_test_django.sh gunicorn_run.sh ./
 COPY source/ source/
-RUN ./django_run_migration.sh $env
+RUN ./wf_run_migration_django.sh $env
 
 
 ENTRYPOINT [ "/bin/bash" ]

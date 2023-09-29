@@ -5,8 +5,8 @@ then
     exit 1
 fi
 
+cd source/project/
 set -a
 export DJANGO_SETTINGS_MODULE=settings.settings_$1
 set +a
-pushd source/project/
-gunicorn -c settings/gunicorn_config_$1.py project.wsgi
+python manage.py runserver $HOST --settings=settings.settings_$1

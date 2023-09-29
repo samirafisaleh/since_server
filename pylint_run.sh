@@ -1,0 +1,1 @@
+pylint source/project > pylint_results.txt

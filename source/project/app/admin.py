@@ -5,6 +5,8 @@ from app.models import (
 )
 
 class EntryAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ["title", "datetime_of_interest"]
+    exclude = []
+    search_fields = ['title']
 
 admin.site.register(Entry, EntryAdmin)

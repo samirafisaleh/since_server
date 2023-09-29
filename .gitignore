@@ -4,3 +4,4 @@ logging/
 migrations/
 project/db.sqlite3
 *.pyc
+pylint_results.txt
