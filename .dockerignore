@@ -1,4 +1,3 @@
 
-
-source/project/app/migrations
 source/project/db.sqlite3
+source/project/app/migrations

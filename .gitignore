@@ -3,5 +3,6 @@ env/
 logging/
 migrations/
 project/db.sqlite3
+__pycache__/
 *.pyc
 pylint_results.txt

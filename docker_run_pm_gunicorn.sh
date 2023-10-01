@@ -14,4 +14,4 @@ docker rm $cont_name
 docker run -d -p $port:$port \
             -e HOST="0.0.0.0:${port}" \
             --name $cont_name $dir_name:$1 \
-            wf_run_django.sh $1
+            gunicorn_run.sh $1

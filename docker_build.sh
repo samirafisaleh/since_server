@@ -5,4 +5,5 @@ then
     exit 1
 fi
 
-docker build --build-arg env=$1 --tag since_public_api:$1 .
+dir_name=${PWD##*/}
+docker build --build-arg env=$1 --tag $dir_name:$1 .
