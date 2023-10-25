@@ -6,4 +6,8 @@ then
 fi
 
 cd source/project/
-python manage.py test -v 2 --settings=settings.settings_$1
+set -a
+export DJANGO_SETTINGS_MODULE=settings.settings
+export DJANGO_ENV=$1
+set +a
+python manage.py test app.tests -v 2 --settings=settings.settings

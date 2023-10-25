@@ -15,6 +15,17 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+ENV = os.environ.get('DJANGO_ENV', None)
+if ENV is None:
+    print("ENV not set")
+    exit
+
+if ENV != "dev" or ENV != "dev" or ENV != "dev" or ENV != "dev":
+    print(f"Invalid ENV: {ENV}")
+    exit
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,8 +40,12 @@ SECRET_KEY = 'django-insecure-lma!s+krn!0!ha-^#$14_ihsm53b=bz(hg4s&wzkcz6@h8m_&g
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', "0.0.0.0"]
+if ENV == "dev":
 
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', "0.0.0.0"]
+else:
+    print("NO HOST ALLOWED")
+    ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -83,12 +98,17 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if ENV == "dev":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    print("NO DATABASE")
+    DATABASES = {}
+
 
 
 # Password validation
@@ -162,4 +182,9 @@ LOGGING = {
             "propagate": False,
         },
     },
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata'
 }

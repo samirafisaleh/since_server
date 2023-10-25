@@ -7,6 +7,7 @@ fi
 
 cd source/project/
 set -a
-export DJANGO_SETTINGS_MODULE=settings.settings_$1
+export DJANGO_SETTINGS_MODULE=settings.settings
+export DJANGO_ENV=$1
 set +a
-python manage.py runserver $HOST --settings=settings.settings_$1
+python manage.py runserver $HOST --settings=settings.settings

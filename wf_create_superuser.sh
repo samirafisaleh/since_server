@@ -10,4 +10,4 @@ set -a
 export DJANGO_SETTINGS_MODULE=settings.settings
 export DJANGO_ENV=$1
 set +a
-python manage.py show_urls --settings=settings.settings
+python manage.py createsuperuser --settings=settings.settings

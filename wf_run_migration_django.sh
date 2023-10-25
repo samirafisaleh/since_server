@@ -6,5 +6,9 @@ then
 fi
 
 cd source/project/
-python manage.py makemigrations --settings=settings.settings_$1
-python manage.py migrate --settings=settings.settings_$1
+set -a
+export DJANGO_SETTINGS_MODULE=settings.settings
+export DJANGO_ENV=$1
+set +a
+python manage.py makemigrations --settings=settings.settings
+python manage.py migrate --settings=settings.settings

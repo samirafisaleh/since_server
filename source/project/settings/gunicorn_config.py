@@ -2,6 +2,14 @@ import multiprocessing
 import os
 # https://docs.gunicorn.org/en/stable/settings.html
 
+ENV = os.environ.get('DJANGO_ENV', None)
+if ENV is None:
+    print("ENV not set")
+    exit
+
+if ENV != "dev" or ENV != "dev" or ENV != "dev" or ENV != "dev":
+    print(f"Invalid ENV: {ENV}")
+    exit
 
 
 ###################################################
